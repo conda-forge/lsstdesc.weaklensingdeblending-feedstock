@@ -1,5 +1,5 @@
 {% set name = "lsstdesc.weaklensingdeblending" %}
-{% set version = "0.5" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/LSSTDESC/WeakLensingDeblending/archive/{{ version }}.tar.gz
-  sha256: 3c8b0b6be0f21443e5e3ff68e05f678915598f59e0d34b6c6ba01e5be71870d1
+  sha256: c5a3f39f9f0aa1785fa15bb9015c99948509ae124a4c77dd8c449d1c67f37ba7
 
 build:
   number: 0
