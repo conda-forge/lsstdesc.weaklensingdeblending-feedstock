@@ -33,7 +33,7 @@ outputs:
       imports:
         - descwl
 
-  - name: {{ name|replace('.', '-')lower }}
+  - name: {{ name|replace('.', '-')|lower }}
     version: {{ version }}
     requirements:
       host:
