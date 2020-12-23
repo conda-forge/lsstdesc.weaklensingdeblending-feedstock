@@ -2,7 +2,7 @@
 {% set version = "1.0.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
@@ -10,26 +10,40 @@ source:
   sha256: c5a3f39f9f0aa1785fa15bb9015c99948509ae124a4c77dd8c449d1c67f37ba7
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
-  script: {{ PYTHON }} -m pip install . -vv
 
-requirements:
-  host:
-    - python
-    - pip
-  run:
-    - python
-    - fitsio
-    - galsim
-    - numpy
-    - astropy
-    - lmfit
-    - six
+outputs:
+  - name: {{ name|lower }}
+    version: {{ version }}
+    script: build_pkg.sh
+    requirements:
+      host:
+        - python
+        - pip
+      run:
+        - python
+        - fitsio
+        - galsim
+        - numpy
+        - astropy
+        - lmfit
+        - six
+    test:
+      imports:
+        - descwl
 
-test:
-  imports:
-    - descwl
+  - name: {{ name|replace('.', '-')lower }}
+    version: {{ version }}
+    requirements:
+      host:
+        - python
+      run:
+        - python
+        - {{ pin_subpackage("lsstdesc.weaklensingdeblending", exact=True) }}
+    test:
+      imports:
+        - descwl
 
 about:
   home: https://github.com/LSSTDESC/WeakLensingDeblending
